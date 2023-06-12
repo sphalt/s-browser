@@ -17,7 +17,6 @@ private const val DIFFICULTY_LEVEL = "EASY"
  * create an instance of this fragment.
  */
 class PuzzleFragment : Fragment() {
-    // TODO: Rename and change types of parameters
     private var difficulty_level: String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
