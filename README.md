@@ -1,4 +1,4 @@
-#  SP Browser
+#  S-Browser
 This repository is for a coding challenge by eQualitie.
 
 ## Instructions
