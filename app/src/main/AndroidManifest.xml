@@ -26,11 +26,13 @@
         android:theme="@style/AppThemeNotActionBar"
         android:usesCleartextTraffic="true"
         tools:ignore="UnusedAttribute">
+
+
         <activity
             android:name=".easteregg.EasterEggActivity"
             android:exported="false"
             android:label="@string/easter_egg"
-            android:theme="@style/AppTheme"/>
+            android:theme="@style/AppTheme" />
         <activity
             android:name=".BrowserActivity"
             android:configChanges="keyboard|keyboardHidden|mcc|mnc|orientation|screenSize|locale|layoutDirection|smallestScreenSize|screenLayout"

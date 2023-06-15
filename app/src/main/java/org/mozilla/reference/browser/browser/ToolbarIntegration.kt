@@ -8,6 +8,7 @@ import android.content.Context
 import android.content.Intent
 import androidx.core.content.ContextCompat
 import androidx.core.content.res.ResourcesCompat
+import androidx.fragment.app.FragmentManager
 import kotlinx.coroutines.MainScope
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
@@ -39,6 +40,8 @@ import mozilla.components.support.ktx.kotlinx.coroutines.flow.ifChanged
 import org.mozilla.reference.browser.R
 import org.mozilla.reference.browser.addons.AddonsActivity
 import org.mozilla.reference.browser.easteregg.EasterEggActivity
+import org.mozilla.reference.browser.easteregg.EasterEggFragment
+import org.mozilla.reference.browser.easteregg.RewardDialogFragment
 import org.mozilla.reference.browser.ext.components
 import org.mozilla.reference.browser.ext.share
 import org.mozilla.reference.browser.settings.SettingsActivity
@@ -54,6 +57,7 @@ class ToolbarIntegration(
     private val tabsUseCases: TabsUseCases,
     private val webAppUseCases: WebAppUseCases,
     sessionId: String? = null,
+    private val fragmentManager: FragmentManager
 ) : LifecycleAwareFeature, UserInteractionHandler {
     private val shippedDomainsProvider = ShippedDomainsProvider().also {
         it.initialize(context)
@@ -174,9 +178,7 @@ class ToolbarIntegration(
             },
 
             TextMenuCandidate(text = "Easter Egg") {
-                val intent = Intent(context, EasterEggActivity::class.java)
-                intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
-                context.startActivity(intent)
+                EasterEggFragment().show(fragmentManager, "TAG")
             },
         )
     }

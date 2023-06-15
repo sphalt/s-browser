@@ -1,12 +1,12 @@
 package org.mozilla.reference.browser.easteregg
 
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import androidx.fragment.app.DialogFragment
 import org.mozilla.reference.browser.R
 
 /**
@@ -14,7 +14,9 @@ import org.mozilla.reference.browser.R
  * Use the [EasterEggFragment.newInstance] factory method to
  * create an instance of this fragment.
  */
-class EasterEggFragment : Fragment(), View.OnClickListener {
+class EasterEggFragment (
+    private val sessionId: String? = null
+): DialogFragment(), View.OnClickListener {
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -35,23 +37,20 @@ class EasterEggFragment : Fragment(), View.OnClickListener {
     override fun onClick(view: View?) {
         when(view?.id) {
             R.id.btn_easy -> {
-                beginPuzzle("EASY")
+                beginPuzzle(DifficultyLevel.EASY.name)
             }
             R.id.btn_medium -> {
-                beginPuzzle("MEDIUM")
+                beginPuzzle(DifficultyLevel.MEDIUM.name)
             }
             R.id.btn_hard -> {
-                beginPuzzle("HARD")
+                beginPuzzle(DifficultyLevel.HARD.name)
             }
         }
     }
 
     private fun beginPuzzle(level: String) {
-        val puzzleFragment = PuzzleFragment.newInstance(level)
-        parentFragmentManager.beginTransaction().apply {
-            replace(R.id.container, puzzleFragment)
-            addToBackStack(null)
-            commit()
-        }
+        val puzzleFragment = PuzzleFragment.newInstance(level, sessionId)
+        puzzleFragment.show(parentFragmentManager, "TAG")
+        dismiss()
     }
 }
