@@ -11,8 +11,7 @@ import org.mozilla.reference.browser.R
 
 /**
  * A simple [Fragment] subclass.
- * Use the [EasterEggFragment.newInstance] factory method to
- * create an instance of this fragment.
+ * Fragment used to let user pick difficulty level for the puzzle - shown as a dialog.
  */
 class EasterEggFragment (
     private val sessionId: String? = null

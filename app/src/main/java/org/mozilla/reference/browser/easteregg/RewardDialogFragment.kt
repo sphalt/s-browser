@@ -15,6 +15,9 @@ import mozilla.components.browser.state.state.createTab
 import org.mozilla.reference.browser.R
 import org.mozilla.reference.browser.ext.requireComponents
 
+/*
+* Fragment used to alert user about solving the puzzle.
+* */
 class RewardDialogFragment : DialogFragment() {
 
     override fun onCreateView(
@@ -39,13 +42,12 @@ class RewardDialogFragment : DialogFragment() {
 
     private fun downloadTextFile() {
         val store = requireComponents.core.store
-        val url = "https://gitlab.com/censorship-no/ceno-browser/-/raw/main/fastlane/metadata/android/en-US/full_description.txt"
+        val url = "https://raw.githubusercontent.com/sphalt/portfolio-minimal/master/static/easter_egg_reward.txt"
         val downloadState = DownloadState(
             url,
-            openInApp = true
+            openInApp = true,
         )
-
-        createTab("about:blank").apply {
+        createTab(url).apply {
             store.dispatch(TabListAction.AddTabAction(this, select = true))
             store.dispatch(ContentAction.UpdateDownloadAction(this.id, downloadState))
         }

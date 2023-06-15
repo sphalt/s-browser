@@ -1,19 +1,13 @@
 package org.mozilla.reference.browser.easteregg
 
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.DialogFragment
-import mozilla.components.browser.state.action.ContentAction
-import mozilla.components.browser.state.action.TabListAction
-import mozilla.components.browser.state.state.content.DownloadState
-import mozilla.components.browser.state.state.createTab
 import org.mozilla.reference.browser.R
-import org.mozilla.reference.browser.ext.requireComponents
 
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
 private const val DIFFICULTY_LEVEL = "DIFFICULTY_LEVEL"
@@ -23,6 +17,7 @@ private const val SESSION_ID = "SESSION_ID"
  * A simple [Fragment] subclass.
  * Use the [PuzzleFragment.newInstance] factory method to
  * create an instance of this fragment.
+ * Fragment used for showing puzzle to user and taking user's input for the answer
  */
 class PuzzleFragment : DialogFragment() {
     private var difficultyLevel = DifficultyLevel.EASY
@@ -49,10 +44,10 @@ class PuzzleFragment : DialogFragment() {
         super.onViewCreated(view, savedInstanceState)
 
         val puzzle = Puzzles().puzzles[difficultyLevel]!!
-        val tvlevel = view.findViewById<TextView>(R.id.textview)
+        val tvlevel = view.findViewById<TextView>(R.id.tv_puzzle_question)
         tvlevel.setText(puzzle.question)
 
-        val etAnswer = view.findViewById<TextView>(R.id.editTextText2)
+        val etAnswer = view.findViewById<TextView>(R.id.et_puzzle_answer)
         val btnSubmit = view.findViewById<TextView>(R.id.btn_submit_answer)
 
         val downloader: EasterEggDownloader = EasterEggDownloader(requireContext())

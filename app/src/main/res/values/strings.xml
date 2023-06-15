@@ -205,5 +205,9 @@
     <string name="label_easter_egg_hard">Hard</string>
     <string name="label_easter_egg_medium">Medium</string>
     <string name="label_easter_egg_easy">Easy</string>
-    <string name="text_easter_egg_choose_difficulty">Welcome to the easter egg hunt! Choose you difficulty level to proceed!</string>
+    <string name="text_easter_egg_choose_difficulty">Welcome to the easter egg hunt! Choose your difficulty level to proceed!</string>
+    <string name="label_submit_button">Submit</string>
+    <string name="label_hint_answer">Answer</string>
+    <string name="label_get_reward">Get Reward</string>
+    <string name="label_cancel">Cancel</string>
 </resources>

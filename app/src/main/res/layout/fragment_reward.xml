@@ -6,7 +6,6 @@
     android:orientation="vertical"
     tools:context=".easteregg.RewardDialogFragment">
 
-    <!-- TODO: Update blank fragment layout -->
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -19,13 +18,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:text="Get Reward" />
+        android:text="@string/label_get_reward" />
 
     <Button
         android:id="@+id/btn_cancel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:text="Cancel" />
+        android:text= "@string/label_cancel" />
 
 </LinearLayout>

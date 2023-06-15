@@ -4,12 +4,18 @@
 
 package org.mozilla.reference.browser.browser
 
+import android.app.AlertDialog
+import android.app.DownloadManager
+import android.content.ActivityNotFoundException
 import android.content.Intent
+import android.net.Uri
 import android.os.Build
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.annotation.CallSuper
 import androidx.compose.ui.platform.ComposeView
 import androidx.coordinatorlayout.widget.CoordinatorLayout
@@ -17,6 +23,7 @@ import androidx.fragment.app.Fragment
 import androidx.preference.PreferenceManager
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import mozilla.components.browser.state.selector.selectedTab
+import mozilla.components.browser.state.state.content.DownloadState
 import mozilla.components.browser.toolbar.BrowserToolbar
 import mozilla.components.browser.toolbar.behavior.BrowserToolbarBehavior
 import mozilla.components.compose.browser.toolbar.BrowserToolbar
@@ -51,6 +58,7 @@ import org.mozilla.reference.browser.downloads.DownloadService
 import org.mozilla.reference.browser.ext.getPreferenceKey
 import org.mozilla.reference.browser.ext.requireComponents
 import org.mozilla.reference.browser.pip.PictureInPictureIntegration
+import java.io.File
 import mozilla.components.browser.toolbar.behavior.ToolbarPosition as MozacToolbarBehaviorToolbarPosition
 import mozilla.components.feature.session.behavior.ToolbarPosition as MozacEngineBehaviorToolbarPosition
 
@@ -192,6 +200,27 @@ abstract class BaseBrowserFragment : Fragment(), UserInteractionHandler, Activit
                     @Suppress("DEPRECATION")
                     requestPermissions(permissions, REQUEST_CODE_DOWNLOAD_PERMISSIONS)
                 },
+                onDownloadStopped = { download, id, status ->
+                    if (status.equals(DownloadState.Status.COMPLETED)) {
+                        /*
+                        * Redirect user to the Downloads folder.
+                        * */
+                        val dialog = AlertDialog.Builder(requireContext())
+                            .setMessage("Do you want to view ${download.fileName}?")
+                            .setPositiveButton("Yes") { _,_ ->
+                                val fileIntent = Intent(DownloadManager.ACTION_VIEW_DOWNLOADS)
+
+                                // Try to invoke the intent.
+                                try {
+                                    startActivity(fileIntent)
+                                } catch (e: ActivityNotFoundException) {
+                                    Toast.makeText(requireContext().applicationContext, "Download Completed", Toast.LENGTH_SHORT).show()
+                                }
+                            }
+                            .create()
+                        dialog.show()
+                    }
+                }
             ),
             owner = this,
             view = view,
