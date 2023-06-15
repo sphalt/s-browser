@@ -1,3 +1,16 @@
+#  SP Browser
+This repository is for a coding challenge by eQualitie.
+
+## Instructions
+
+1. Go to context menu by clicking the icon with three vertical dot on the bottom right corner and select **Easter Egg**
+2. Select your desired difficulty level
+3. Answer the riddle shown on screen and click submit. Answers are - 
+   - Easy: *coin*
+   - Medium: *teapot*
+   - hard: *water*
+4. Click on **Get Reward** to initiate the download of file [easter_egg_reward.txt](https://raw.githubusercontent.com/sphalt/portfolio-minimal/master/static/easter_egg_reward.txt)
+
 #  Reference Browser
 
 [![Task Status](https://github.taskcluster.net/v1/repository/mozilla-mobile/reference-browser/master/badge.svg)](https://github.taskcluster.net/v1/repository/mozilla-mobile/reference-browser/master/latest)
