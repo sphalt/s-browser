@@ -50,8 +50,6 @@ class PuzzleFragment : DialogFragment() {
         val etAnswer = view.findViewById<TextView>(R.id.et_puzzle_answer)
         val btnSubmit = view.findViewById<TextView>(R.id.btn_submit_answer)
 
-        val downloader: EasterEggDownloader = EasterEggDownloader(requireContext())
-
         btnSubmit.setOnClickListener(View.OnClickListener {
             if (puzzle.verifyAnswer(etAnswer.text.toString())) {
                 RewardDialogFragment().show(parentFragmentManager, "TAG")
