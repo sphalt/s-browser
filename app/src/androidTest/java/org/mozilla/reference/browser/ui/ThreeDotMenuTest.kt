@@ -80,6 +80,7 @@ class ThreeDotMenuTest {
             verifySyncedTabsButtonExists()
             verifyReportIssueExists()
             verifyOpenSettingsExists()
+            verifyEasterEggExists()
         }
     }
 
@@ -105,6 +106,7 @@ class ThreeDotMenuTest {
             verifySyncedTabsButtonExists()
             verifyReportIssueExists()
             verifyOpenSettingsExists()
+            verifyEasterEggExists()
         }
     }
 
@@ -241,6 +243,16 @@ class ThreeDotMenuTest {
             verifySettingsViewExists()
         }
     }
+
+    @Test
+    fun openEasterEggTest() {
+        navigationToolbar {
+        }.openThreeDotMenu {
+        }.openEasterEgg {
+            verifyEasterEggViewExists()
+        }
+    }
+
 
     // Verifies the Synced tabs menu opens from a tab's 3 dot menu and displays the correct view if the user isn't signed in
     @Test

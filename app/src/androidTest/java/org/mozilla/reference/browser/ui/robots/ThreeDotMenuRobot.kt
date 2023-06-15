@@ -40,6 +40,8 @@ class ThreeDotMenuRobot {
     fun verifyReportIssueExists() = assertReportIssueButton()
     fun verifyOpenSettingsExists() = assertSettingsButton()
 
+    fun verifyEasterEggExists() = assertEasterEggButton()
+
     fun verifyShareButtonDoesntExist() = assertShareButtonDoesntExist()
     fun verifyRequestDesktopSiteToggleDoesntExist() = assertRequestDesktopSiteToggleDoesntExist()
     fun verifyFindInPageButtonDoesntExist() = assertFindInPageButtonDoesntExist()
@@ -139,6 +141,13 @@ class ThreeDotMenuRobot {
             return SettingsViewRobot.Transition()
         }
 
+        fun openEasterEgg(interact: EasterEggRobot.() -> Unit): EasterEggRobot.Transition {
+            easterEggButton().click()
+            mDevice.waitForIdle()
+            EasterEggRobot().interact()
+            return EasterEggRobot.Transition()
+        }
+
         fun openAddonsManager(interact: AddonsManagerRobot.() -> Unit): AddonsManagerRobot.Transition {
             addOnsButton().click()
 
@@ -184,6 +193,7 @@ private fun requestDesktopSiteToggle() = onView(ViewMatchers.withText("Request d
 private fun findInPageButton() = onView(ViewMatchers.withText("Find in Page"))
 private fun reportIssueButton() = onView(ViewMatchers.withText("Report issue"))
 private fun settingsButton() = onView(ViewMatchers.withText("Settings"))
+private fun easterEggButton() = onView(ViewMatchers.withText("Easter Egg"))
 private fun addToHomescreenButton() = onView(ViewMatchers.withText("Add to homescreen"))
 private fun addOnsButton() = onView(ViewMatchers.withText("Add-ons"))
 private fun syncedTabsButton() = onView(ViewMatchers.withText("Synced Tabs"))
@@ -219,6 +229,8 @@ private fun assertSyncedTabsButton() = syncedTabsButton()
 private fun assertReportIssueButton() = reportIssueButton()
     .check(ViewAssertions.matches(ViewMatchers.withEffectiveVisibility(ViewMatchers.Visibility.VISIBLE)))
 private fun assertSettingsButton() = settingsButton()
+    .check(ViewAssertions.matches(ViewMatchers.withEffectiveVisibility(ViewMatchers.Visibility.VISIBLE)))
+private fun assertEasterEggButton() = easterEggButton()
     .check(ViewAssertions.matches(ViewMatchers.withEffectiveVisibility(ViewMatchers.Visibility.VISIBLE)))
 private fun assertRequestDesktopSiteIsTurnedOff() {
     assertFalse(
