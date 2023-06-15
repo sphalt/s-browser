@@ -39,6 +39,7 @@ import mozilla.components.support.base.feature.UserInteractionHandler
 import mozilla.components.support.ktx.kotlinx.coroutines.flow.ifChanged
 import org.mozilla.reference.browser.R
 import org.mozilla.reference.browser.addons.AddonsActivity
+import org.mozilla.reference.browser.addons.AddonsFragment
 import org.mozilla.reference.browser.easteregg.EasterEggFragment
 import org.mozilla.reference.browser.easteregg.RewardDialogFragment
 import org.mozilla.reference.browser.ext.components
@@ -177,7 +178,7 @@ class ToolbarIntegration(
             },
 
             TextMenuCandidate(text = "Easter Egg") {
-//                EasterEggFragment().show(fragmentManager, "TAG")
+                EasterEggFragment().show(fragmentManager, "TAG")
             },
         )
     }
